@@ -3,8 +3,10 @@ from PyQt5.QtWidgets import QMainWindow
 from ui import Ui_MainWindow
 from random import *
 
+    
+
 class Widget(QMainWindow):
-    def   __init__(self):
+    def __init__(self):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -16,16 +18,14 @@ class Widget(QMainWindow):
             signs = 'qwertyuiopasdfghjklzxcvbnmcm'
         if self.ui.checkBox.isChecked():
             signs += '0123456789'
-        
         result = ''
-        for i in range(10):
-            result += choice(signs)
-        self.ui.label_3.setText(result)
-
-
-    
-
-
+        try:
+            length = int(self.ui.lineEdit.text())
+            for i in range(length):
+                result += choice(signs)
+            self.ui.lineEdit_2.setText(result)
+        except ValueError:
+            self.ui.lineEdit_2.setText("Будьласка введіть довжину пароля")
 
 
 app = QApplication([])
